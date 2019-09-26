@@ -1,0 +1,55 @@
+body {
+  font-family: 'Courier New', Courier, monospace
+}
+h1 {
+  color: blue;
+  font-size: 2em;
+}
+
+hr {
+  overflow: visible; /* For IE */
+  height: 30px;
+  border-style: solid;
+  border-color: black;
+  border-width: 1px 0 0 0;
+  border-radius: 20px;
+}
+hr:before { /* Not really supposed to work, but does */
+  display: block;
+  content: "";
+  height: 30px;
+  margin-top: -31px;
+  border-style: solid;
+  border-color: black;
+  border-width: 0 0 1px 0;
+  border-radius: 20px;
+}
+
+h2 {
+  color: gray;
+  display: inline-block;
+  font-weight: bold;
+}
+
+div h2 {
+  font-size: 4em;
+}
+
+.container {
+  display: flex;
+}
+.intro {
+  flex: 1;
+}
+.sidebar {
+  position: relative;
+  width: 30em;
+  bottom: 100px;
+}
+.sidebar h2 {
+  margin: 0;
+  text-align: center;
+}
+a:hover {
+  text-decoration: none;
+}
