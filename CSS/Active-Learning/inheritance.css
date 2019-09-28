@@ -1,0 +1,18 @@
+#outer div ul .nav a {
+  background-color: blue;
+  padding: 5px;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+div div li a {
+  color: yellow;
+}               
+
+/* write a declaration in a new rule that will reset the background color back to white, without using an actual color value */
+#outer #inner a{
+  background-color: initial;
+  color: black;
+}
+
+/* I could have used 'inherit', to set the background back to be the same as its parent, where as 'initial' sets it to the default browser's style. Both ways work. The trick is to write a selector that is more specific than the selector used to turn the backrgound blue. */
