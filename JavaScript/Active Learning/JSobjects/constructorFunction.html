@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Object-oriented JavaScript example</title>
+  </head>
+
+  <body>
+    <p>This example requires you to enter commands in your browser's JavaScript console (see <a href="https://developer.mozilla.org/en-US/docs/Learn/Common_questions/What_are_browser_developer_tools">What are browser developer tools</a> for more information).</p>
+
+  </body>
+
+    <script>
+/*
+        function createNewPerson(name) {
+          const obj {};
+          obj.name = name;
+          obj.greeting = function() {
+            alert('Hi! I\'m ' + obj.name + '.');
+          };
+          return obj;
+        }
+
+        const salva = createNewPerson('Salva');
+        salva.name;
+        salva.greeting();
+        
+        
+*/
+
+//constructor function simple example
+/*
+        function Person(name) {
+          this.name = name;
+          this.greeting = function() {
+            alert('Hi! I\'m ' + this.name + '.');
+          };
+        }
+
+        const person1 = new Person('Bob');
+        const person2 = new Person('Sarah');
+*/
+
+        function Person(first, last, age, gender, interests) {
+          this.name = {
+            first : first,
+            last : last
+          };
+          this.age = age;
+          this.gender = gender;
+          this.interests = interests;
+          this.bio = function() {
+
+            //This will always stay the same. We can store it in a variable.
+            var string = this.name.first + ' ' + this.name.last + ' is ' + this.age + '. ';
+
+            //Create a variable that will contain the pronoun
+            var pronoun;
+
+            //create a conditional that will determin the pronoun
+            if (this.gender === 'male' || this.gender === 'm' || this.gender === 'Male' || this.gender === 'M' ) {
+              pronoun = 'He likes ';
+            } else if (this.gender === 'female' || this.gender === 'f' || this.gender === 'Female' || this.gender === 'F' ) {
+              pronoun = 'She likes ';
+            } else {
+              pronoun = 'They like ';
+            }
+            
+            //add the pronoun and string
+            string += pronoun;
+
+            //create a conditional to determine the number of interests
+            if (this.interests.length === 1) {
+              string += this.interests[0] + '.';
+            } else if (interests.length === 2) {
+              string += this.interests[1] + ' and ' + this.interests[1] + '.';
+            } else {
+              //create a loop if interests are more than 2
+              for(let i = 0; i < interests.length; i++) {
+                if (i === interests.length - 1) {
+                  string += 'and ' + interests[i] + '.';
+                } else {
+                  string += interests[i] + ', ';
+                }
+              }
+            }
+
+            alert(string);
+          };
+          this.greeting = function() {
+            alert("Hi! I'm " + this.name.first + '.');
+          };
+        }
+
+        const person1 = new Person('Jerry', 'Locke', 25, 'male', ['reading', 'studying']);
+
+        const person2 = new Person('Sarah', 'Looks', 32, 'f', ['reading', 'studying','watching movies', 'cooking']);
+        //person1['age']
+        //person1.interests[1]
+        //person1.bio()
+    </script>
+</html>
