@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <title>Simple setInterval clock</title>
+    <style>
+      p {
+        font-family: sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <p class="clock"></p>
+    <p class="stopwatch"></p>
+    <button class="start">Start</button>
+    <button class="stop">Stop</button>
+    <button class="reset">Reset</button>
+    <script>
+      function displayTime() {
+        let date = new Date();
+        let time = date.toLocaleTimeString();
+        document.querySelector('.clock').textContent = time;
+      }
+      displayTime();
+      const createClock = setInterval(displayTime, 1000);
+
+      //Define a counter variable for the number of seconds
+      let secondCount = 0;
+      //Define  a global to store the interval when it is active
+      let stopWatch;
+      //Store a refernce to the display paragraph in  a variable
+      const stopwatchPara = document.querySelector('.stopwatch');
+
+      //function to calculate the current hours, minutes, and seconds, and display the count
+      function displayCount() {
+        let hours = Math.floor(secondCount/3600);
+        let minutes = Math.floor((secondCount % 3600)/60);
+        let seconds = Math.floor(secondCount % 60);
+
+        //display a leading zero if amount is less than 10
+        let displayHours = (hours < 10) ? '0' + hours : hours;
+        let displayMinutes = (minutes < 10) ? '0' + minutes : minutes;
+        let displaySeconds = (seconds < 10) ? '0' + seconds : seconds;
+
+        //Have the current stopwatch display time into the paragraph
+        stopwatchPara.textContent = displayHours + ':' + displayMinutes + ':' + displaySeconds;
+
+        //increment the second counter
+        secondCount++;
+      }
+
+      //Store references to the buttons
+      const startBtn = document.querySelector('.start');
+      const stopBtn = document.querySelector('.stop');
+      const resetBtn = document.querySelector('.reset');
+
+      //Start the timer when the 'start' button is pressed. Disable button
+      startBtn.addEventListener('click', () => {
+        stopWatch = setInterval(displayCount, 1000);
+        startBtn.disabled = true;
+      });
+      //clear the interval when the 'stop' button is pressed
+      stopBtn.addEventListener('click', () => {
+        clearInterval(stopWatch);
+        startBtn.disabled = false;
+      });
+      //set the counter back to 0 when, the 'reset' button is pressed
+      resetBtn.addEventListener('click', () => {
+        clearInterval(stopWatch);
+        startBtn.disabled = false;
+        secondCount = 0;
+        displayCount();
+      });
+      
+      displayCount();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <title>My test page</title>
+
+    <style>
+      html {
+        background-color: white;
+        height: 100%;
+      }
+
+      body {
+        height: inherit;
+        background-color: red;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      div {
+        display: inline-block;
+        font-size: 10rem;
+      }
+    </style>
+  </head>
+  <body>
+
+    <div>↻</div>
+
+    <script>
+      const spinner = document.querySelector('div');
+      let rotateCount = 0;
+      let startTime = null;
+      let rAF;
+      let spinning = false;
+
+      function draw(timestamp) {
+        if (!startTime) {
+          startTime = timestamp;
+        }
+
+        rotateCount = (timestamp - startTime) / 3;
+
+        //check to see if rotateCount is aboe 360 (a full circle)
+        if (rotateCount > 359) {
+          //set the value to its modulo of 360 so that the circle animation can continue uninterrupted at a low value
+          rotateCount %= 360;
+        }
+        
+        //set the rotation of the div to be equal to rotateCount degrees
+        spinner.style.transform = 'rotate('  + rotateCount + 'deg)';
+
+        //Call the next frame in animation
+        rAF = requestAnimationFrame(draw);
+      }
+
+      //add an event listener to start/stop the spinner on mouse click
+      document.body.addEventListener('click', () => {
+        if (spinning) {
+          cancelAnimationFrame(rAF);
+          spinning = false;
+        } else {
+          draw();
+          spinning = true;
+        }
+      });
+    </script>
+  </body>
+</html>
