@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Images</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+  <canvas class="myCanvas">
+    <p>Add suitable fallback here.</p>
+  </canvas>
+
+  //Images, frames from videos, or the content of other canvases, etc
+
+  <script>
+    const canvas = document.querySelector('.myCanvas');
+    const width = canvas.width = window.innerWidth;
+    const height = canvas.height = window.innerHeight;
+    const ctx = canvas.getContext('2d');
+    ctx.fillStyle = 'rgb(0,0,0)';
+    ctx.fillRect(0,0,width,height);
+
+    let image = new Image();
+    image.src = 'firefox.png';
+
+    //we need to make sure the image file has been loaded first, otherwise the code will fail. 
+    image.onload = function() {
+      //ctx.drawImage(image, 150, 50);
+      //(reference to image, x coordinate, y coordinate)
+      ctx.drawImage(image, 20, 20, 185, 175, 50, 50, 185, 175);
+      //(reference to image, parameter #2 + 3: top left corner to cut, paramter #4 + 5: width and height to cut, parameter #6 + 7: coordinates where to draw, parameters #7 + 8: width and height to draw)
+    }
+  </script>
+</body>
+</html>
